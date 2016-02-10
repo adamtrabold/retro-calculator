@@ -90,21 +90,25 @@ class ViewController: UIViewController {
         
         if currentOperation != Operation.Empty {
             //Run some math
-            rightValStr = runningNumber
-            runningNumber = ""
             
-            if currentOperation == Operation.Multiply {
-                result = "\(Double(leftValStr)! * Double(rightValStr)!)"
-            } else if currentOperation == Operation.Divide {
-                result = "\(Double(leftValStr)! / Double(rightValStr)!)"
-            } else if currentOperation == Operation.Subtract {
-                result = "\(Double(leftValStr)! - Double(rightValStr)!)"
-            } else if currentOperation == Operation.Add {
-                result = "\(Double(leftValStr)! + Double(rightValStr)!)"
-            }
+            //A user selected an operator, but then selected another operator without first entering a number
+            if runningNumber != "" {
+                rightValStr = runningNumber
+                runningNumber = ""
+            
+                if currentOperation == Operation.Multiply {
+                    result = "\(Double(leftValStr)! * Double(rightValStr)!)"
+                } else if currentOperation == Operation.Divide {
+                    result = "\(Double(leftValStr)! / Double(rightValStr)!)"
+                } else if currentOperation == Operation.Subtract {
+                    result = "\(Double(leftValStr)! - Double(rightValStr)!)"
+                } else if currentOperation == Operation.Add {
+                    result = "\(Double(leftValStr)! + Double(rightValStr)!)"
+                }
             
             leftValStr = result
             outputLbl.text = result
+            }
             
             currentOperation = op
             
